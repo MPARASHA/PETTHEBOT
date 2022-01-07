@@ -39,9 +39,15 @@ def perform(bot, user, cmd, args = None):
 	if cmd == "joke":
 		with open('reddit_jokes.json') as fp:
 			data = json.load(fp)
-			random_index = random.randint(0, len(data)-1)
-			bot.send_message(data[random_index]["title"])
-			bot.send_message(data[random_index]["body"])
+
+			while(True):
+				random_index = random.randint(0, len(data)-1)
+				
+				# enforcing twitch message size requirement
+				if len(data[random_index]["body"]) < 500 and "\n" not in data[random_index]["body"]:
+					bot.send_message(data[random_index]["title"])
+					bot.send_message(data[random_index]["body"])
+					break
 			
 
 
