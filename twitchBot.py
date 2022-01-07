@@ -4,29 +4,30 @@ import json
 import random
 import os
 
-NAME = "PETTHEBOT"
-OWNER = "filomaj"
+NAME = "PETTHEBOT" # Bot Account Name
+OWNER = "filomaj" # Channel on which to deploy the bot
 
+# Command Prefixes
 PREFIX = "!"
 PREFIX2 = "%"
 
 def process(bot, user, message):
-		try:
-			if message.startswith(PREFIX):
-				cmd = message.split(" ")[0][len(PREFIX):]
-				args = message.split(" ")[1:]
-				perform(bot, user, cmd, args)
+	try:
+		if message.startswith(PREFIX):
+			cmd = message.split(" ")[0][len(PREFIX):]
+			args = message.split(" ")[1:]
+			perform(bot, user, cmd, args)
 
-		except:
-			if message.startswith(PREFIX):
-				cmd = message.split(" ")[0][len(PREFIX):]
-				perform(bot, user, cmd)
+	except:
+		if message.startswith(PREFIX):
+			cmd = message.split(" ")[0][len(PREFIX):]
+			perform(bot, user, cmd)
 
 
-		if message.startswith(PREFIX2):
-			if len(message.split(" ")) > 1:
-				num = random.randint(0,100)
-				bot.send_message(str(num) + "% " + user['name'])
+	if message.startswith(PREFIX2):
+		if len(message.split(" ")) > 1:
+			num = random.randint(0,100)
+			bot.send_message(str(num) + "% " + user['name'])
 
 
 def perform(bot, user, cmd, args = None):
@@ -49,8 +50,8 @@ class Bot(SingleServerIRCBot):
 		self.HOST = "irc.chat.twitch.tv"
 		self.PORT = 6667
 		self.USERNAME = NAME.lower()
-		self.CLIENT_ID = os.getenv('C_ID')
-		self.TOKEN = os.getenv('TOKEN')
+		self.CLIENT_ID = os.getenv('C_ID') # Client ID for bot account
+		self.TOKEN = os.getenv('TOKEN') # OAuth Token for bot account
 		self.CHANNEL = f"#{OWNER}"
 
 		super().__init__([(self.HOST, self.PORT, f"oauth:{self.TOKEN}")], self.USERNAME, self.USERNAME)
