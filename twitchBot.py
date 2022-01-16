@@ -43,15 +43,15 @@ def process(bot, user, message):
 
 	if user["name"].lower() == "filomaj":
 		num = random.randint(0,100)
-		if(num > 90):
+		if(num > 95):
 			bot.send_message("Loser " + randomcase(message))
-		elif(num < 10):
+		elif(num < 5):
 			bot.send_message("@" + user['name'] + " modCheck who asked?")
 	else:
 		num = random.randint(0,100)
-		if(num > 90):
+		if(num > 95):
 			bot.send_message("@" + user['name'] + " modCheck who asked?")
-		elif(num < 10):
+		elif(num < 5):
 			bot.send_message(randomcase(message))
 
 		
