@@ -11,7 +11,19 @@ OWNER = "filomaj" # Channel on which to deploy the bot
 PREFIX = "!"
 PREFIX2 = "%"
 
+# CREDIT: https://stackoverflow.com/a/52942600/17844690
+def randomcase(s):
+	result = ''
+	for c in s:
+		case = random.randint(0, 1)
+		if case == 0:
+			result += c.upper()
+		else:
+			result += c.lower()
+	return result
+
 def process(bot, user, message):
+
 	try:
 		if message.startswith(PREFIX):
 			cmd = message.split(" ")[0][len(PREFIX):]
@@ -28,6 +40,21 @@ def process(bot, user, message):
 		if len(message.split(" ")) > 1:
 			num = random.randint(0,100)
 			bot.send_message(str(num) + "% " + user['name'])
+
+	if user["name"].lower() == "filomaj":
+		num = random.randint(0,100)
+		if(num > 90):
+			bot.send_message("Loser " + randomcase(message))
+		elif(num < 10):
+			bot.send_message("@" + user['name'] + " modCheck who asked?")
+	else:
+		num = random.randint(0,100)
+		if(num > 90):
+			bot.send_message("@" + user['name'] + " modCheck who asked?")
+		elif(num < 10):
+			bot.send_message(randomcase(message))
+
+		
 
 
 def perform(bot, user, cmd, args = None):
