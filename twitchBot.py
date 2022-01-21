@@ -64,7 +64,7 @@ def perform(bot, user, cmd, args = None):
 		bot.send_message(message)
 
 	if cmd == "joke":
-		with open('reddit_jokes.json') as fp:
+		with open('reddit_jokes_filtered.json') as fp:
 			data = json.load(fp)
 
 			while(True):
