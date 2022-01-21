@@ -8,7 +8,7 @@ with open('reddit_jokes.json') as fi:
         goodJokes = []
 
         for joke in data:
-            if joke["score"] >= 25:
+            if joke["score"] >= 100 and len(joke["body"]) < 500 and "\n" not in joke["body"]:
                 goodJokes.append(joke)
                 count+=1
         
