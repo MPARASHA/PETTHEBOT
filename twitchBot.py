@@ -70,6 +70,14 @@ def perform(bot, user, cmd, args = None):
 			
 			bot.send_message(data[random_index]["title"])
 			bot.send_message(data[random_index]["body"])
+
+	if cmd == "scareme":
+		with open('twosentencehorror_filtered.json') as fp:
+			data = json.load(fp)
+			random_index = random.randint(0, len(data)-1)
+			
+			bot.send_message(data[random_index]["title"])
+			bot.send_message(data[random_index]["body"])
 				
 			
 
