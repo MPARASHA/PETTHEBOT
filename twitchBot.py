@@ -66,7 +66,7 @@ def process(bot, user, message):
 		with open('insults.txt') as f:
 			lines = f.read().splitlines()
 			myline =random.choice(lines)
-			bot.send_message(myline)
+			bot.send_message("@" + user['name'] + " " + myline)
 
 		
 
