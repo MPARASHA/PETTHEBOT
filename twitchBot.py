@@ -30,10 +30,14 @@ def process(bot, user, message):
 			args = message.split(" ")[1:]
 			perform(bot, user, cmd, args)
 
+			return
+
 	except:
 		if message.startswith(PREFIX):
 			cmd = message.split(" ")[0][len(PREFIX):]
 			perform(bot, user, cmd)
+
+			return
 
 
 	if message.startswith(PREFIX2):
@@ -41,18 +45,28 @@ def process(bot, user, message):
 			num = random.randint(0,100)
 			bot.send_message(str(num) + "% " + user['name'])
 
+		return
+
+	num = random.randint(0,100)
+
 	if user["name"].lower() == "filomaj":
-		num = random.randint(0,100)
-		if(num > 95):
+		
+		if(num > 97):
 			bot.send_message("Loser " + randomcase(message))
-		elif(num < 5):
+		elif(num < 3):
 			bot.send_message("@" + user['name'] + " modCheck who asked?")
 	else:
-		num = random.randint(0,100)
-		if(num > 95):
+		
+		if(num > 97):
 			bot.send_message("@" + user['name'] + " modCheck who asked?")
-		elif(num < 5):
+		elif(num < 3):
 			bot.send_message(randomcase(message))
+
+	if(num>=3 and num<6):
+		with open('insults.txt') as f:
+			lines = f.read().splitlines()
+			myline =random.choice(lines)
+			bot.send_message(myline)
 
 		
 
