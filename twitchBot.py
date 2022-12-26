@@ -121,11 +121,14 @@ class Bot(SingleServerIRCBot):
 		else:
 			schedule = Scheduler(tzinfo=TZ_UTC)
 
-			trigger= dt.time(hour=10, tzinfo=TZ_UTC)
+			trigger= dt.time(hour=10, minute=30, tzinfo=TZ_UTC)
 
 			schedule.daily(trigger, self.job)
 
+			print("Scheduled")
+
 			while True:
+				print("In Loop")
 				schedule.exec_jobs()
 				time.sleep(60)  # wait one minute
 
@@ -140,13 +143,14 @@ class Bot(SingleServerIRCBot):
 
 	def send_message(self, message):
 		self.connection.privmsg(self.CHANNEL, message)
-		print("sent message")
 		time.sleep(5)
 
 
 	def job(self):
 		for i in range(7):
 			self.send_message("TriHard")
+		print("executed")
+		
 
 class MyBotThread(threading.Thread) :
 	def __init__(self, channel):
@@ -164,6 +168,3 @@ if __name__ == "__main__":
 		thread = MyBotThread(channel=channel)
 		thread.start()
 		print("Thread started for channel:" , channel)
-
-
-
