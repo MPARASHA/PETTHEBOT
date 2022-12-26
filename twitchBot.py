@@ -121,7 +121,7 @@ class Bot(SingleServerIRCBot):
 		else:
 			schedule = Scheduler(tzinfo=TZ_UTC)
 
-			trigger= dt.time(hour=23, minute=404, tzinfo=TZ_UTC)
+			trigger= dt.time(hour=23, minute=5, tzinfo=TZ_UTC)
 
 			schedule.daily(trigger, self.job)
 
