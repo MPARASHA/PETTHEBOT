@@ -42,7 +42,7 @@ class Bot(SingleServerIRCBot):
 			if message.startswith(PREFIX):
 				cmd = message.split(" ")[0][len(PREFIX):]
 				args = message.split(" ")[1:]
-				self.perform(self, user, cmd, args)
+				self.perform(user, cmd, args)
 
 				return
 
