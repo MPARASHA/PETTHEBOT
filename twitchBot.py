@@ -145,7 +145,7 @@ class Bot(SingleServerIRCBot):
 
 	def job(self):
 		for i in range(7):
-			self.send_message("TriHard " + str(i))
+			self.send_message("TriHard " + str(i+1))
 		
 
 class MyBotThread(threading.Thread) :
@@ -159,7 +159,6 @@ class MyBotThread(threading.Thread) :
 			
 
 if __name__ == "__main__":
-
 	for channel in OWNERS:
 		thread = MyBotThread(channel=channel)
 		thread.start()
