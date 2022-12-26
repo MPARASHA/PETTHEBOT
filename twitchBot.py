@@ -129,7 +129,6 @@ class Bot(SingleServerIRCBot):
 				schedule.exec_jobs()
 				time.sleep(60)  # wait one minute
 
-
 	def on_pubmsg(self, cxn, event):
 		tags = {kvpair["key"]: kvpair["value"] for kvpair in event.tags}
 		user = {"name": tags["display-name"], "id": tags["user-id"]}
@@ -141,7 +140,6 @@ class Bot(SingleServerIRCBot):
 	def send_message(self, message):
 		self.connection.privmsg(self.CHANNEL, message)
 		time.sleep(5)
-
 
 	def job(self):
 		for i in range(7):
