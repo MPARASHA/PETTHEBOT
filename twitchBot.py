@@ -59,7 +59,6 @@ class Bot(SingleServerIRCBot):
 
 				return
 
-
 		if message.startswith(PREFIX2):
 			if len(message.split(" ")) > 1:
 				num = random.randint(0,100)
