@@ -4,6 +4,11 @@ import time
 import json
 import random
 import os
+from scheduler import Scheduler
+import time
+import pytz 
+import datetime as dt
+
 
 NAME = "PETTHEBOT" # Bot Account Name
 OWNERS = os.environ['CHANNEL_LIST'].split(" ") # Channels on which to deploy the bot
@@ -11,6 +16,7 @@ OWNERS = os.environ['CHANNEL_LIST'].split(" ") # Channels on which to deploy the
 # Command Prefixes
 PREFIX = "!"
 PREFIX2 = "%"
+TZ_UTC = dt.timezone.utc 
 
 # CREDIT: https://stackoverflow.com/a/52942600/17844690
 def randomcase(s):
@@ -110,20 +116,37 @@ class Bot(SingleServerIRCBot):
 			cxn.cap("REQ", f":twitch.tv/{req}")
 
 		cxn.join(self.CHANNEL)
-		self.send_message("yo MrDestructoid")
+		if "pewdiepie" not in self.CHANNEL:
+			self.send_message("yo MrDestructoid")
+		else:
+			schedule = Scheduler(tzinfo=TZ_UTC)
+
+			trigger= dt.time(hour=10, tzinfo=TZ_UTC)
+
+			schedule.daily(trigger, self.job)
+
+			while True:
+				schedule.exec_jobs()
+				time.sleep(60)  # wait one minute
+
 
 	def on_pubmsg(self, cxn, event):
 		tags = {kvpair["key"]: kvpair["value"] for kvpair in event.tags}
 		user = {"name": tags["display-name"], "id": tags["user-id"]}
 		message = event.arguments[0]
 
-		if user["name"] != NAME:
+		if user["name"] != NAME and "pewdiepie" not in self.CHANNEL:
 			self.process(user, message)
 
 	def send_message(self, message):
 		self.connection.privmsg(self.CHANNEL, message)
+		print("sent message")
 		time.sleep(5)
 
+
+	def job(self):
+		for i in range(7):
+			self.send_message("TriHard")
 
 class MyBotThread(threading.Thread) :
 	def __init__(self, channel):
@@ -133,6 +156,7 @@ class MyBotThread(threading.Thread) :
 	def run(self):
 		bot = Bot(self.channel)
 		bot.start()
+			
 
 if __name__ == "__main__":
 
