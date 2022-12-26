@@ -121,7 +121,7 @@ class Bot(SingleServerIRCBot):
 		else:
 			schedule = Scheduler(tzinfo=TZ_UTC)
 
-			trigger= dt.time(hour=23, minute=21, tzinfo=TZ_UTC)
+			trigger= dt.time(hour=23, minute=35, tzinfo=TZ_UTC)
 
 			schedule.daily(trigger, self.job)
 
@@ -143,13 +143,12 @@ class Bot(SingleServerIRCBot):
 
 	def send_message(self, message):
 		self.connection.privmsg(self.CHANNEL, message)
-		print("sent")
 		time.sleep(5)
 
 
 	def job(self):
 		for i in range(7):
-			self.send_message("TriHard")
+			self.connection.privmsg(self.CHANNEL, "TriHard " + str(1))
 			print("executed")
 		
 
