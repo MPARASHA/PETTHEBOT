@@ -16,3 +16,4 @@ tempora==4.1.2
 typing_extensions==4.0.1
 urllib3==1.26.7
 zipp==3.7.0
+schedule==1.1.0

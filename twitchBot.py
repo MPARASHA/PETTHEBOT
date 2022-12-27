@@ -118,7 +118,7 @@ class Bot(SingleServerIRCBot):
 		if "pewdiepie" not in self.CHANNEL:
 			self.send_message("yo MrDestructoid")
 		else:
-			schedule.every().day.at("15:20").do(self.job)
+			schedule.every().day.at("15:25").do(self.job)
 
 			while True:
 				schedule.run_pending()
