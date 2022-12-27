@@ -6,7 +6,6 @@ import random
 import os
 from scheduler import Scheduler
 import time
-import pytz 
 import datetime as dt
 
 
