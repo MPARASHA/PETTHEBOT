@@ -4,9 +4,9 @@ import time
 import json
 import random
 import os
-from scheduler import Scheduler
 import time
 import datetime as dt
+import schedule
 
 
 NAME = "PETTHEBOT" # Bot Account Name
@@ -114,18 +114,15 @@ class Bot(SingleServerIRCBot):
 			cxn.cap("REQ", f":twitch.tv/{req}")
 
 		cxn.join(self.CHANNEL)
+
 		if "pewdiepie" not in self.CHANNEL:
 			self.send_message("yo MrDestructoid")
 		else:
-			schedule = Scheduler(tzinfo=TZ_UTC)
-
-			trigger= dt.time(hour=22, tzinfo=TZ_UTC)
-
-			schedule.daily(trigger, self.job)
+			schedule.every().day.at("15:20").do(self.job)
 
 			while True:
-				schedule.exec_jobs()
-				time.sleep(60)  # wait one minute
+				schedule.run_pending()
+				time.sleep(50)
 
 	def on_pubmsg(self, cxn, event):
 		tags = {kvpair["key"]: kvpair["value"] for kvpair in event.tags}
