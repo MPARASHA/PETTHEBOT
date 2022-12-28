@@ -121,6 +121,7 @@ class Bot(SingleServerIRCBot):
 			schedule.every().day.at("15:00").do(self.job)
 
 			while True:
+				print(schedule.get_jobs())
 				schedule.run_pending()
 				time.sleep(50)
 
@@ -139,6 +140,7 @@ class Bot(SingleServerIRCBot):
 	def job(self):
 		for i in range(7):
 			self.send_message("TriHard " + str(i+1))
+			print("executed")
 		
 
 class MyBotThread(threading.Thread) :
