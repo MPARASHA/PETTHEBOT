@@ -117,13 +117,7 @@ class Bot(SingleServerIRCBot):
 
 		if "pewdiepie" not in self.CHANNEL:
 			self.send_message("yo MrDestructoid")
-		else:
-			schedule.every().day.at("15:00").do(self.job)
-
-			while True:
-				print(schedule.get_jobs())
-				schedule.run_pending()
-				time.sleep(50)
+			
 
 	def on_pubmsg(self, cxn, event):
 		tags = {kvpair["key"]: kvpair["value"] for kvpair in event.tags}
@@ -143,18 +137,49 @@ class Bot(SingleServerIRCBot):
 			print("executed")
 		
 
-class MyBotThread(threading.Thread) :
-	def __init__(self, channel):
-		self.channel = channel
-		super(MyBotThread, self).__init__()
+class BotThread(threading.Thread) :
+	def __init__(self, bot):
+		self.bot = bot
+		super(BotThread, self).__init__()
 
 	def run(self):
-		bot = Bot(self.channel)
-		bot.start()
+		self.bot.start()
+
+# class Type2BotThread(threading.Thread) :
+# 	def __init__(self, channel, bot):
+# 		self.channel = channel
+# 		self.bot = bot
+# 		super(Type2BotThread, self).__init__()
+
+# 	def run(self):
+
+# 		bot.start()
+# 		schedule.every().day.at("15:00").do(bot.job)
+
+# 		while True:
+# 			print(schedule.get_jobs())
+# 			schedule.run_pending()
+# 			time.sleep(50)
+		
+		
+			
 			
 
 if __name__ == "__main__":
+	sched_bot = None
+	
 	for channel in OWNERS:
-		thread = MyBotThread(channel=channel)
+		bot = Bot(channel)
+		thread = BotThread(bot=bot)
 		thread.start()
 		print("Thread started for channel:" , channel)
+
+		if "pewdiepie" in channel:
+			sched_bot = bot
+		
+	schedule.every().day.at("15:30").do(sched_bot.job)
+
+	while True:
+		print(schedule.get_jobs())
+		schedule.run_pending()
+		time.sleep(50)
