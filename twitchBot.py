@@ -129,7 +129,7 @@ class Bot(SingleServerIRCBot):
 
 	def send_message(self, message):
 		self.connection.privmsg(self.CHANNEL, message)
-		time.sleep(5)
+		time.sleep(2)
 
 	def job(self):
 		for i in range(7):
