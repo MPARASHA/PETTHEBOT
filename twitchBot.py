@@ -134,7 +134,7 @@ class Bot(SingleServerIRCBot):
 	def job(self):
 		for i in range(7):
 			self.send_message("TriHard " + str(i+1))
-			print("executed")
+		print("executed")
 		
 
 class BotThread(threading.Thread) :
@@ -144,30 +144,11 @@ class BotThread(threading.Thread) :
 
 	def run(self):
 		self.bot.start()
-
-# class Type2BotThread(threading.Thread) :
-# 	def __init__(self, channel, bot):
-# 		self.channel = channel
-# 		self.bot = bot
-# 		super(Type2BotThread, self).__init__()
-
-# 	def run(self):
-
-# 		bot.start()
-# 		schedule.every().day.at("15:00").do(bot.job)
-
-# 		while True:
-# 			print(schedule.get_jobs())
-# 			schedule.run_pending()
-# 			time.sleep(50)
-		
-		
-			
-			
+					
 
 if __name__ == "__main__":
 	sched_bot = None
-	
+
 	for channel in OWNERS:
 		bot = Bot(channel)
 		thread = BotThread(bot=bot)
@@ -177,9 +158,8 @@ if __name__ == "__main__":
 		if "pewdiepie" in channel:
 			sched_bot = bot
 		
-	schedule.every().day.at("15:30").do(sched_bot.job)
+	schedule.every().day.at("15:00").do(sched_bot.job)
 
 	while True:
-		print(schedule.get_jobs())
 		schedule.run_pending()
 		time.sleep(50)
