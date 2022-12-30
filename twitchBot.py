@@ -90,7 +90,7 @@ class Bot(SingleServerIRCBot):
 	def perform(self, user, cmd, args = None):
 		if cmd == "love" and args is not None:
 			num = random.randint(0,100)
-			message = f"There is {num}% love between {user['name']} and {args[0]}"
+			message = f"There is {num}% <3 between {user['name']} and {args[0]}"
 			self.send_message(message)
 
 		if cmd == "joke":
