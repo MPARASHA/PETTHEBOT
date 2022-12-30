@@ -132,7 +132,7 @@ class Bot(SingleServerIRCBot):
 		time.sleep(2)
 
 	def job(self):
-		for i in range(7):
+		for i in range(42):
 			self.send_message("TriHard " + str(i+1))
 		print("executed")
 		
