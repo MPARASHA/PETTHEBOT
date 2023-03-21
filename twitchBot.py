@@ -132,7 +132,7 @@ class Bot(SingleServerIRCBot):
 		time.sleep(timeS)
 
 	def job(self):
-		pewTimeS = 10
+		pewTimeS = 30
 		self.send_message("/me TriHard ait8k a1hl acoffeer anonymous_nobody_ antimattertape bluepigman5000 dnaflamingo dubstyler6 duskdarker edomer eml64 equinks gtchimp__7 hierotitan_____ ilikewatermelon44 in_uranus infinitegachi joinky_ kuharri doctordankus pepeflat powee2147 progamer42 robinhood187 simon36 straizotv tetyys triplehaitch caverona hunchbackposture blansome mano1188 andreudzn visioisiv sidetrvcked shotbyafkinsuccan fawcan asun4 99froxy slurps m0ntxw parakeetxd poikau togazx", pewTimeS)
 		self.send_message("/me TriHard nam_naam haxk xalhs frozennnnnnnnn h_h410 hejjavin isaacaba satanisteen keeev05 mm2pl xqc_goagane danht0308 lastweeknextday lilbyte321 y5or the_bigerm chateye choc_of_boxlates hawichii thewildings razik18 dimburuk tuntematon rosethemagician realroflkopter yosefsaa7 timusp nam_until_ban longtobacco ljackson77 chopped_cheese xerdies marcfryd xanory zreem evacuationz sosil osotaka jessei ethantp gelsonmartins luddinho98 ragnarosthefacelord mronbacond forsenbee", pewTimeS)
 		self.send_message("/me TriHard borsen zugren swejerkk peberro golantrev caglapickaxe seambug spyboss mastondzn zolep gocho_ badoge feketebarany kagumiiin garrry_____12 college_boi carlossinhache maiman sushixt4 farbrorbarbro jose king_kong_monkey_dong wrayckage chachnaq miloski1 valeralytvak zanza_31 zemmygo farkasmartinka10 twolettername c4y_ kattah forsenlookingatyou andrewu1 cosmic46 yaxy123 shines_u phuwnaren123 freyr21 depressedpenguin1 jellyfried wishiie obiron05 pcbot1 mouzah_", pewTimeS)
