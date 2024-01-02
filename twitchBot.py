@@ -115,10 +115,10 @@ class Bot(SingleServerIRCBot):
 
 		cxn.join(self.CHANNEL)
 
-		if self.CHANNEL.lower() == self.USERNAME:
+		if self.USERNAME in self.CHANNEL.lower():
 			self.send_message("GotEEM")
 
-		if "pewdiepie" not in self.CHANNEL:
+		elif "pewdiepie" not in self.CHANNEL:
 			self.send_message("yo MrDestructoid")
 			
 
