@@ -9,7 +9,7 @@ import datetime as dt
 import schedule
 
 
-NAME = "PETTHEBOT" # Bot Account Name
+NAME = "EmiRobbQueen" # Bot Account Name
 OWNERS = os.environ['CHANNEL_LIST'].split(" ") # Channels on which to deploy the bot
 
 # Command Prefixes
