@@ -156,7 +156,7 @@ class Bot(SingleServerIRCBot):
 			self.MAX_MESSAGES = 5
 		else:	
 			self.connection.privmsg(self.CHANNEL, message)
-			time.sleep(1)
+			time.sleep(2)
 			self.connection.privmsg(self.CHANNEL, "LMFAO")
 			time.sleep(3)
 
