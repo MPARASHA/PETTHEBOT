@@ -194,6 +194,6 @@ if __name__ == "__main__":
 	if sched_bot is not None:	
 		schedule.every().day.at("15:00").do(sched_bot.job)
 
-	while True:
-		schedule.run_pending()
-		time.sleep(50)
+		while True:
+			schedule.run_pending()
+			time.sleep(50)
