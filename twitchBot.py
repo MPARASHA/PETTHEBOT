@@ -130,7 +130,7 @@ class Bot(SingleServerIRCBot):
 		if user["name"] != NAME and "pewdiepie" not in self.CHANNEL and "mizkif" not in self.CHANNEL:
 			self.process(user, message)
 		if "mizkif" in self.CHANNEL and (message.lower().startswith("im ") or message.lower().startswith("i am ") or message.lower().startswith("i'm ")):
-			self.send_message(f"@{user["name"]} Hi {message.split("m",1)[1]}")
+			self.send_message(f'@{user["name"]} Hi {message.split("m",1)[1]}')
 			
 
 	def send_message(self, message, timeS = 2):
