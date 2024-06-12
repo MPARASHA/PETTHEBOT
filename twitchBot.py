@@ -135,16 +135,23 @@ class Bot(SingleServerIRCBot):
 			
 
 	def on_pubmsg(self, cxn, event):
-		if not is_live_stream("mizkif", self.CLIENT_ID) and not self.PAUSED:
-			tags = {kvpair["key"]: kvpair["value"] for kvpair in event.tags}
-			user = {"name": tags["display-name"], "id": tags["user-id"]}
-			message = event.arguments[0]
-	
-			if user["name"] != NAME and "pewdiepie" not in self.CHANNEL and "mizkif" not in self.CHANNEL:
-				self.process(user, message)
-			if "mizkif" in self.CHANNEL and (message.lower().startswith("im ") or message.lower().startswith("i am ") or message.lower().startswith("i'm ")):
-				print(f'@{user["name"]} Hi {message[len(message.lower().split("m",1)[0]) + 2:]}')
-				self.send_message(f'@{user["name"]} Hi {message[len(message.lower().split("m",1)[0]) + 2:]}')
+		
+		if not self.PAUSED:
+			if is_live_stream("mizkif", self.CLIENT_ID):
+				self.PAUSED = True
+				print("LIVE")
+				time.sleep(300)
+				self.PAUSED = False
+			else:
+				tags = {kvpair["key"]: kvpair["value"] for kvpair in event.tags}
+				user = {"name": tags["display-name"], "id": tags["user-id"]}
+				message = event.arguments[0]
+		
+				if user["name"] != NAME and "pewdiepie" not in self.CHANNEL and "mizkif" not in self.CHANNEL:
+					self.process(user, message)
+				if "mizkif" in self.CHANNEL and (message.lower().startswith("im ") or message.lower().startswith("i am ") or message.lower().startswith("i'm ")):
+					print(f'@{user["name"]} Hi {message[len(message.lower().split("m",1)[0]) + 2:]}')
+					self.send_message(f'@{user["name"]} Hi {message[len(message.lower().split("m",1)[0]) + 2:]}')
 			
 
 	def send_message(self, message, timeS = 2):
