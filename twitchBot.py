@@ -36,7 +36,7 @@ def is_live_stream(streamer_name, client_id):
     twitch_api_stream_url = "https://decapi.me/twitch/uptime/" + streamer_name
 
     streamer_html = requests.get(twitch_api_stream_url)
-    streamer = streamer_html.content
+    streamer = streamer_html.text
 
     return not "offline" in streamer
 
