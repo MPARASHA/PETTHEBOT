@@ -137,7 +137,7 @@ class Bot(SingleServerIRCBot):
 				self.MAX_MESSAGES = 10
 				return
 				
-			self.send_message(f'@{user["name"]} Hi {message.split("m",1)[1]}')
+			self.send_message(f'@{user["name"]} Hi {message[len(message.lower().split("m",1)[0]) + 2:]}')
 			
 
 	def send_message(self, message, timeS = 2):
