@@ -38,7 +38,7 @@ class Bot(SingleServerIRCBot):
 		self.CLIENT_ID = os.getenv('C_ID') # Client ID for bot account
 		self.TOKEN = os.getenv('TOKEN') # OAuth Token for bot account
 		self.CHANNEL= f"#{OWNER}"
-		self.MAX_MESSAGES = 10
+		self.MAX_MESSAGES = 5
 
 		super().__init__([(self.HOST, self.PORT, f"oauth:{self.TOKEN}")], self.USERNAME, self.USERNAME)
 
@@ -138,8 +138,8 @@ class Bot(SingleServerIRCBot):
 	def send_message(self, message, timeS = 2):
 		self.MAX_MESSAGES = self.MAX_MESSAGES - 1 
 		if self.MAX_MESSAGES == 0:
-			time.sleep(5)
-			self.MAX_MESSAGES = 10
+			time.sleep(300)
+			self.MAX_MESSAGES = 5
 		else:	
 			self.connection.privmsg(self.CHANNEL, message)
 			time.sleep(timeS)
