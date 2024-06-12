@@ -7,6 +7,7 @@ import os
 import time
 import datetime as dt
 import schedule
+import requests
 
 
 NAME = "pepe_the_toad" # Bot Account Name
