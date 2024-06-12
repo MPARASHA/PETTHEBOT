@@ -49,6 +49,7 @@ class Bot(SingleServerIRCBot):
 		self.TOKEN = os.getenv('TOKEN') # OAuth Token for bot account
 		self.CHANNEL= f"#{OWNER}"
 		self.MAX_MESSAGES = 5
+		SELF.PAUSED = False
 
 		super().__init__([(self.HOST, self.PORT, f"oauth:{self.TOKEN}")], self.USERNAME, self.USERNAME)
 
@@ -134,7 +135,7 @@ class Bot(SingleServerIRCBot):
 			
 
 	def on_pubmsg(self, cxn, event):
-		if not is_live_stream("mizkif", self.CLIENT_ID):
+		if not is_live_stream("mizkif", self.CLIENT_ID) and not self.PAUSED:
 			tags = {kvpair["key"]: kvpair["value"] for kvpair in event.tags}
 			user = {"name": tags["display-name"], "id": tags["user-id"]}
 			message = event.arguments[0]
@@ -149,7 +150,9 @@ class Bot(SingleServerIRCBot):
 	def send_message(self, message, timeS = 2):
 		self.MAX_MESSAGES = self.MAX_MESSAGES - 1 
 		if self.MAX_MESSAGES == 0:
-			time.sleep(300)
+			self.PAUSED = True
+			time.sleep(600)
+			self.PAUSED = False
 			self.MAX_MESSAGES = 5
 		else:	
 			self.connection.privmsg(self.CHANNEL, message)
