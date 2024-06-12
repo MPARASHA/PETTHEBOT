@@ -131,14 +131,14 @@ class Bot(SingleServerIRCBot):
 		if user["name"] != NAME and "pewdiepie" not in self.CHANNEL and "mizkif" not in self.CHANNEL:
 			self.process(user, message)
 		if "mizkif" in self.CHANNEL and (message.lower().startswith("im ") or message.lower().startswith("i am ") or message.lower().startswith("i'm ")):
-				
+			print(f'@{user["name"]} Hi {message[len(message.lower().split("m",1)[0]) + 2:]}')
 			self.send_message(f'@{user["name"]} Hi {message[len(message.lower().split("m",1)[0]) + 2:]}')
 			
 
 	def send_message(self, message, timeS = 2):
 		self.MAX_MESSAGES = self.MAX_MESSAGES - 1 
 		if self.MAX_MESSAGES == 0:
-			time.sleep(3600)
+			time.sleep(5)
 			self.MAX_MESSAGES = 10
 		else:	
 			self.connection.privmsg(self.CHANNEL, message)
