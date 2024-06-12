@@ -49,7 +49,7 @@ class Bot(SingleServerIRCBot):
 		self.TOKEN = os.getenv('TOKEN') # OAuth Token for bot account
 		self.CHANNEL= f"#{OWNER}"
 		self.MAX_MESSAGES = 5
-		SELF.PAUSED = False
+		self.PAUSED = False
 
 		super().__init__([(self.HOST, self.PORT, f"oauth:{self.TOKEN}")], self.USERNAME, self.USERNAME)
 
