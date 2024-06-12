@@ -33,13 +33,12 @@ def randomcase(s):
 
 def is_live_stream(streamer_name, client_id):
 
-    twitch_api_stream_url = "https://api.twitch.tv/kraken/streams/" \
-                    + streamer_name + "?client_id=" + client_id
+    twitch_api_stream_url = "decapi.me/twitch/uptime/" + streamer_name
 
     streamer_html = requests.get(twitch_api_stream_url)
-    streamer = json.loads(streamer_html.content)
+    streamer = streamer_html.content
 
-    return streamer["stream"] is not None
+    return not "offline" in streamer
 
 class Bot(SingleServerIRCBot):
 	def __init__(self, OWNER):
