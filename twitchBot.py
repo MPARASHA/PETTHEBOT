@@ -153,7 +153,9 @@ class Bot(SingleServerIRCBot):
 			self.MAX_MESSAGES = 5
 		else:	
 			self.connection.privmsg(self.CHANNEL, message)
-			time.sleep(timeS)
+			time.sleep(1)
+			self.connection.privmsg(self.CHANNEL, "LMFAO")
+			time.sleep(3)
 
 	def job(self):
 		pewTimeS = int(os.getenv('TIMEVAR'))
