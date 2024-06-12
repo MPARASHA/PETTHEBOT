@@ -137,6 +137,7 @@ class Bot(SingleServerIRCBot):
 	def on_pubmsg(self, cxn, event):
 		
 		if not self.PAUSED:
+			print(event.arguments[0])
 			if is_live_stream("mizkif", self.CLIENT_ID):
 				self.PAUSED = True
 				print("LIVE")
