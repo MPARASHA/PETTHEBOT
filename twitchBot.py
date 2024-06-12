@@ -9,7 +9,7 @@ import datetime as dt
 import schedule
 
 
-NAME = "EmiRobbQueen" # Bot Account Name
+NAME = "pepe_the_toad" # Bot Account Name
 OWNERS = os.environ['CHANNEL_LIST'].split(" ") # Channels on which to deploy the bot
 
 # Command Prefixes
@@ -118,7 +118,7 @@ class Bot(SingleServerIRCBot):
 		if self.USERNAME in self.CHANNEL.lower():
 			self.send_message("GotEEM")
 
-		elif "pewdiepie" not in self.CHANNEL:
+		elif "pewdiepie" not in self.CHANNEL and "mizkif" not in self.CHANNEL:
 			self.send_message("yo MrDestructoid")
 			
 
@@ -127,8 +127,11 @@ class Bot(SingleServerIRCBot):
 		user = {"name": tags["display-name"], "id": tags["user-id"]}
 		message = event.arguments[0]
 
-		if user["name"] != NAME and "pewdiepie" not in self.CHANNEL:
+		if user["name"] != NAME and "pewdiepie" not in self.CHANNEL and "mizkif" not in self.CHANNEL:
 			self.process(user, message)
+		if "mizkif" in self.CHANNEL and (message.lower().startswith("im ") or message.lower().startswith("i am ") or message.lower().startswith("i'm ")):
+			self.send_message(f"@{user["name"]} Hi {message.split("m",1)[1]}")
+			
 
 	def send_message(self, message, timeS = 2):
 		self.connection.privmsg(self.CHANNEL, message)
