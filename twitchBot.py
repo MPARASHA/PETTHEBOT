@@ -38,6 +38,7 @@ class Bot(SingleServerIRCBot):
 		self.CLIENT_ID = os.getenv('C_ID') # Client ID for bot account
 		self.TOKEN = os.getenv('TOKEN') # OAuth Token for bot account
 		self.CHANNEL= f"#{OWNER}"
+		self.MAX_MESSAGES = 10
 
 		super().__init__([(self.HOST, self.PORT, f"oauth:{self.TOKEN}")], self.USERNAME, self.USERNAME)
 
@@ -130,6 +131,12 @@ class Bot(SingleServerIRCBot):
 		if user["name"] != NAME and "pewdiepie" not in self.CHANNEL and "mizkif" not in self.CHANNEL:
 			self.process(user, message)
 		if "mizkif" in self.CHANNEL and (message.lower().startswith("im ") or message.lower().startswith("i am ") or message.lower().startswith("i'm ")):
+			self.MAX_MESSAGES = self.MAX_MESSAGES - 1 
+			if self.MAX_MESSAGES == 0:
+				time.sleep(3600)
+				self.MAX_MESSAGES = 10
+				return
+				
 			self.send_message(f'@{user["name"]} Hi {message.split("m",1)[1]}')
 			
 
@@ -184,8 +191,8 @@ if __name__ == "__main__":
 		
 		if "pewdiepie" in channel:
 			sched_bot = bot
-		
-	schedule.every().day.at("15:00").do(sched_bot.job)
+	if sched_bot is not None:	
+		schedule.every().day.at("15:00").do(sched_bot.job)
 
 	while True:
 		schedule.run_pending()
