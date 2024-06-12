@@ -1,6 +1,8 @@
 # PETTHEBOT
 IRC twitch bot I created for fun. 
 
+LATEST Update adds functionality to @users in the following manner: for message: "Im tired" Bot will say "Hi tired"
+
 ## Available commands are:
 * % \<INPUT> - gives a random percentage and pings the user
 * !love \<INPUT> - Command output looks like : There is \<PERCENTAGE>% love between \<USER> and \<INPUT>
