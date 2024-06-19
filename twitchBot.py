@@ -52,7 +52,14 @@ class Bot(SingleServerIRCBot):
 		self.PAUSED = False
 
 		super().__init__([(self.HOST, self.PORT, f"oauth:{self.TOKEN}")], self.USERNAME, self.USERNAME)
-
+		
+	def pauser(self):
+    
+	    	self.PAUSED = True
+		time.sleep(600)
+		self.PAUSED = False
+		self.MAX_MESSAGES = 5
+    
 	def process(self, user, message):
 
 		try:
@@ -139,10 +146,9 @@ class Bot(SingleServerIRCBot):
 		if not self.PAUSED:
 			print(event.arguments[0])
 			if is_live_stream("mizkif", self.CLIENT_ID):
-				self.PAUSED = True
-				print("LIVE")
-				time.sleep(300)
-				self.PAUSED = False
+				thread = threading.Thread(target=self.pauser)
+				thread.start()
+				thread.join()
 			else:
 				tags = {kvpair["key"]: kvpair["value"] for kvpair in event.tags}
 				user = {"name": tags["display-name"], "id": tags["user-id"]}
@@ -158,10 +164,9 @@ class Bot(SingleServerIRCBot):
 	def send_message(self, message, timeS = 2):
 		self.MAX_MESSAGES = self.MAX_MESSAGES - 1 
 		if self.MAX_MESSAGES == 0:
-			self.PAUSED = True
-			time.sleep(600)
-			self.PAUSED = False
-			self.MAX_MESSAGES = 5
+			thread = threading.Thread(target=self.pauser)
+			thread.start()
+			thread.join()
 		else:	
 			self.connection.privmsg(self.CHANNEL, message)
 			time.sleep(2)
