@@ -54,8 +54,7 @@ class Bot(SingleServerIRCBot):
 		super().__init__([(self.HOST, self.PORT, f"oauth:{self.TOKEN}")], self.USERNAME, self.USERNAME)
 		
 	def pauser(self):
-    
-	    	self.PAUSED = True
+    		self.PAUSED = True
 		time.sleep(600)
 		self.PAUSED = False
 		self.MAX_MESSAGES = 5
