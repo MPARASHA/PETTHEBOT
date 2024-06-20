@@ -168,6 +168,7 @@ class Bot(SingleServerIRCBot):
 			thread.start()
 		
 		else:	
+			time.sleep(2)
 			self.connection.privmsg(self.CHANNEL, message)
 			time.sleep(2)
 			self.connection.privmsg(self.CHANNEL, "LMFAO")
