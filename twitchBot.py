@@ -49,16 +49,16 @@ class Bot(SingleServerIRCBot):
 		self.CLIENT_ID = os.getenv('C_ID') # Client ID for bot account
 		self.TOKEN = os.getenv('TOKEN') # OAuth Token for bot account
 		self.CHANNEL= f"#{OWNER}"
-		self.MAX_MESSAGES = 10
+		self.MAX_MESSAGES = 7
 		self.PAUSED = False
 
 		super().__init__([(self.HOST, self.PORT, f"oauth:{self.TOKEN}")], self.USERNAME, self.USERNAME)
 
 	def pauser(self):
 		self.PAUSED = True
-		time.sleep(180)
+		time.sleep(1800)
 		self.PAUSED = False
-		self.MAX_MESSAGES = 10
+		self.MAX_MESSAGES = 7
     
 	def process(self, user, message):
 
